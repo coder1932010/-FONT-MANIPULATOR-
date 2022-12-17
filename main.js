@@ -1,3 +1,7 @@
+difference=0;
+RightWrist=0;
+LeftWrist=0;
+
 function setup(){
     video = createCapture(VIDEO);
     video.size(550, 500);
@@ -17,6 +21,15 @@ function Loaded(){
 function gotposes(results){
 if(results.length>0){
     console.log(results);
-
+    LeftWrist = results[0].pose.leftWrist.x;
+    RightWrist = results[0].pose.rightWrist.x;
+    difference = floor(LeftWrist - RightWrist);
 }
+}
+
+function draw(){
+    background("#969A97");
+    textSize(difference);
+    fill("#FFE787");
+    text('Saanchi', 50 ,400);
 }
